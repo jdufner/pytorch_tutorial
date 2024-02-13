@@ -1,0 +1,14 @@
+# IDEs
+.idea/
+.vscode/
+
+# Virtual Environment
+.venv/
+
+# python
+*.pyc
+__pycache__
+
+# misc
+*.bak
+*.patch

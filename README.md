@@ -1,5 +1,8 @@
+# Tutorial
 
-Install PyTorch, Numpy, Matplot etc without CUDA.
+# Installation
+
+Install PyTorch, Numpy, and Matplot without CUDA support.
 This works on _all_ computers.
 
 Admin
@@ -11,7 +14,7 @@ Local user
     python -m pip install numpy matplotlib torch torchvision torchaudio
 
 
-Install PyTorch, NumPy, Matplot etc for CUDA.
+Install PyTorch, NumPy, and Matplot for CUDA.
 This works only if you have installed a graphic card with Nvidia Chip.
 Then you can use GPU for tensor calculation which is way faster than CPU.
 

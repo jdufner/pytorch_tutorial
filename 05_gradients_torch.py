@@ -8,15 +8,18 @@ Y = torch.tensor([2, 4, 6, 8], dtype=torch.float32)
 
 w = torch.tensor(0., dtype=torch.float32, requires_grad=True)
 
+
 # model prediction
 def forward(x):
     return w * x
 
+
 # loss
 def loss(y, y_predicted):
-    return ((y_predicted - y)**2).mean()
+    return ((y_predicted - y) ** 2).mean()
 
-print(f'Predition before training: f(5) = {forward(5):.3f}')
+
+print(f'Prediction before training: f(5) = {forward(5):.3f}')
 
 # Training
 learning_rate = 0.01
@@ -30,7 +33,7 @@ for epoch in range(n_iters):
     l = loss(Y, y_pred)
 
     # gradients = backward pass
-    l.backward() # dl/dw
+    l.backward()  # dl/dw
 
     # update weights
     with torch.no_grad():
@@ -41,5 +44,4 @@ for epoch in range(n_iters):
     if epoch % 10 == 0:
         print(f'epoch {epoch + 1}: w = {w:.3f}, loss = {l:.8f}')
 
-
-print(f'Predition after training: f(5) = {forward(5):.3f}')
+print(f'Prediction after training: f(5) = {forward(5):.3f}')

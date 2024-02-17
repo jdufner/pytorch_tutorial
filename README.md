@@ -121,3 +121,11 @@ Content
 * Implement a logistic regression by training of a neural network
 * Minimizes the error of a tensor to a [Scikit-learn.](https://scikit-learn.org/stable/index.html) data set
 * (again very similar to lesson 7, but usage of another activation function and loss)
+
+### [Lesson 9 - Dataset And Dataloader](https://www.youtube.com/watch?v=PXOzkkB5eH0&list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4&index=9)
+
+Content
+
+* Implement a dataset (subclass of Dataset)
+* Use Dataloader to iterate over data in batches
+

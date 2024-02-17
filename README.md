@@ -129,3 +129,7 @@ Content
 * Implement a dataset (subclass of Dataset)
 * Use Dataloader to iterate over data in batches
 
+### [Lesson 10 - Dataset Transforms](https://www.youtube.com/watch?v=X_QOZEko5uE&list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4&index=10)
+
+Content
+

@@ -18,6 +18,7 @@ l2 = cross_entropy(Y, y_pred_bad)
 print(f'Loss1 numpy: {l1:.4f}')
 print(f'Loss2 numpy: {l2:.4f}')
 
+
 # PyTorch
 loss = nn.CrossEntropyLoss()
 

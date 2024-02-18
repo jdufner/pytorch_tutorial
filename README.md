@@ -133,3 +133,35 @@ Content
 
 Content
 
+* Quick Introduction to existing Transforms
+* Implement different Transforms
+* Combine those Transforms and execute it on Dataset
+
+### [Lesson 11 - Softmax And Cross Entropy](https://www.youtube.com/watch?v=7q7E91pHoW4&list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4&index=11)
+
+Content
+
+* Softmax
+  * Softmax function takes a vector of input values and transforms them to values (probability distribution) between 0 and 1.
+  Constraint is that the sum of all values will be 1.
+  * It is used for multi-class classification. (Usually non-binary problems there sigmoid is more common.)
+  * Softmax implementation in numpy and pytorch.
+* Cross-entropy
+  * Cross-entropy is a loss function for classification.
+  * Cross-entropy is a metric to quantify the difference between two probability distributions (e.g. predicted and true distribution).
+
+
+### [Lesson 12 - Activation Functions](https://www.youtube.com/watch?v=3t9lZM7SS7k&list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4&index=12)
+
+Content
+
+* Activation Functions
+  * Step function
+  * Sigmoid
+  * TanH
+  * ReLU
+  * Leaky ReLU
+  * Softmax
+* ReLU is the most commonly used action function between hidden layers.
+* Softmax is mostly the last activation function in classification output.
+* Sigmoid is mostly the last activation function in binary output.

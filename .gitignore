@@ -15,3 +15,5 @@ __pycache__
 
 # Exclude since data was downloaded by the program
 data/MNIST/
+data/cifar-10-python.tar.gz
+data/cifar-10-batches-py

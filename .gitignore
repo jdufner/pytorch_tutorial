@@ -12,3 +12,6 @@ __pycache__
 # misc
 *.bak
 *.patch
+
+# Exclude since data was downloaded by the program
+data/MNIST/

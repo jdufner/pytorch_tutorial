@@ -45,7 +45,7 @@ classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 
 
 class ConvNet(nn.Module):
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
         super(ConvNet, self).__init__()
         self.conv1 = nn.Conv2d(3, 6, 5)  # padding = 0, stride = 1
         self.pool = nn.MaxPool2d(2, 2)  # padding = 0

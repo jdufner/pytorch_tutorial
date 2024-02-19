@@ -28,7 +28,7 @@ train_dataset = torchvision.datasets.MNIST(root='./data', train=True, transform=
 test_dataset = torchvision.datasets.MNIST(root='./data', train=False, transform=transforms.ToTensor())
 
 train_data_loader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True)
-test_data_loader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True)
+test_data_loader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=False)
 
 examples = iter(train_data_loader)
 samples, labels = next(examples)

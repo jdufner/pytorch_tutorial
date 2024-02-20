@@ -38,11 +38,11 @@ This works on _all_ computers.
 
 Admin
 
-    pip3 install numpy matplotlib scikit-learn torch torchvision torchaudio
+    pip3 install numpy matplotlib scikit-learn tensorboard torch torchvision torchaudio
 
 Local user
 
-    python -m pip install numpy matplotlib scikit-learn torch torchvision torchaudio
+    python -m pip install numpy matplotlib scikit-learn tensorboard torch torchvision torchaudio
 
 
 Install PyTorch, NumPy, and Matplot for CUDA.
@@ -214,3 +214,15 @@ Content
 * Two cases
   1. Continue to train the complete CNN
   2. Train the last layer only
+
+
+### [Lessons 16 - Tensorboard](https://www.youtube.com/watch?v=VJW9wU-1n18&list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4&index=16)
+
+Content
+
+* Generate statistics to analyze the efficiency of the neural net 
+
+Run Tensorboard
+
+    .venv/Scripts/tensorboard.exe --logdir=runs
+

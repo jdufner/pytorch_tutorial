@@ -216,7 +216,7 @@ Content
   2. Train the last layer only
 
 
-### [Lessons 16 - Tensorboard](https://www.youtube.com/watch?v=VJW9wU-1n18&list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4&index=16)
+### [Lesson 16 - Tensorboard](https://www.youtube.com/watch?v=VJW9wU-1n18&list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4&index=16)
 
 Content
 
@@ -226,3 +226,10 @@ Run Tensorboard
 
     .venv/Scripts/tensorboard.exe --logdir=runs
 
+
+### [Lesson 17 - Saving And Loading Models](https://www.youtube.com/watch?v=9L9jEOwRrCg&list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4&index=17)
+
+Content
+
+* Save and load model only,
+* Save and load model and optimizers, called checkpoint during training.

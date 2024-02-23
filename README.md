@@ -38,11 +38,11 @@ This works on _all_ computers.
 
 Admin
 
-    pip3 install numpy matplotlib scikit-learn tensorboard torch torchvision torchaudio
+    pip3 install numpy matplotlib pytorch-lightning scikit-learn tensorboard torch torchvision torchaudio
 
 Local user
 
-    python -m pip install numpy matplotlib scikit-learn tensorboard torch torchvision torchaudio
+    python -m pip install numpy matplotlib pytorch-lightning scikit-learn tensorboard torch torchvision torchaudio
 
 
 Install PyTorch, NumPy, and Matplot for CUDA.
@@ -51,11 +51,11 @@ Then you can use GPU for tensor calculation which is way faster than CPU.
 
 Admin
 
-    pip3 install numpy matplotlib scikit-learn torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+    pip3 install numpy matplotlib pytorch-lightning scikit-learn torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
 Local user
 
-    python -m pip install numpy matplotlib scikit-learn torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+    python -m pip install numpy matplotlib pytorch-lightning scikit-learn torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
 
 Create `requirements.txt`
@@ -233,3 +233,12 @@ Content
 
 * Save and load model only,
 * Save and load model and optimizers, called checkpoint during training.
+
+### [Lession 18 - Deploy A Deepl Learning App]()
+
+### [Lession 19 - Name Classification Using A Recurrent Neural Network (RNN)]()
+
+### [Lesson 20 - Recurrent Neural Networks With Long Short-Term Memory (LSTM) & GRU]()
+
+### [Lesson 21 - Lightweight PyTorch Wrapper: PyTorch Lightning]()
+

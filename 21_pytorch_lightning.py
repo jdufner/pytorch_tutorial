@@ -5,16 +5,14 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchvision
 import torchvision.transforms as transforms
-import matplotlib.pyplot as plt
 import pytorch_lightning as pl
 from pytorch_lightning import Trainer
-from pytorch_lightning.utilities.types import STEP_OUTPUT, OptimizerLRScheduler, TRAIN_DATALOADERS
 
 # Hyper-Parameter
 input_size = 784  # 28 * 28 pixel image size
 hidden_size = 500
 num_classes = 10
-num_epochs = 5
+num_epochs = 2
 batch_size = 100
 learning_rate = .001
 
@@ -26,6 +24,7 @@ class NeuralNet(pl.LightningModule):
         self.l1 = nn.Linear(input_size, hidden_size)
         self.relu = nn.ReLU()
         self.l2 = nn.Linear(hidden_size, num_classes)
+        self.training_step_outputs = []
 
     def forward(self, x):
         out = self.l1(x)
@@ -41,9 +40,10 @@ class NeuralNet(pl.LightningModule):
         outputs = self(images)
         loss = F.cross_entropy(outputs, labels)
 
+        preds = ''
+        self.training_step_outputs.append(preds)
+
         self.log("train_loss", loss, on_step=False, on_epoch=True, prog_bar=True)
-        tensorboard_logs = {'train_loss': loss}
-        #return {'loss': loss, 'log': tensorboard_logs}
         return loss
 
     def configure_optimizers(self):
@@ -68,10 +68,9 @@ class NeuralNet(pl.LightningModule):
         data_loader = torch.utils.data.DataLoader(dataset=dataset, batch_size=batch_size, shuffle=False, num_workers=3)
         return data_loader
 
-    #def on_validation_epoch_end(self):
-        # avg_loss = torch.stack([x['val_loss'] for x in outputs]).mean()
-        # tensorboard_logs = {'tavg_val_loss': avg_loss}
-        # return {'val_loss': avg_loss, 'log': tensorboard_logs}
+    def on_train_epoch_end(self):
+        # all_preds = torch.stack(self.training_step_outputs)
+        self.training_step_outputs.clear()
 
 
 if __name__ == '__main__':

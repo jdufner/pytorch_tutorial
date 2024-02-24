@@ -234,11 +234,25 @@ Content
 * Save and load model only,
 * Save and load model and optimizers, called checkpoint during training.
 
-### [Lession 18 - Deploy A Deepl Learning App]()
+### [Lession 18 - Deploy A Deepl Learning App](https://www.youtube.com/watch?v=bA7-DEtYCNM&list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4&index=18)
 
-### [Lession 19 - Name Classification Using A Recurrent Neural Network (RNN)]()
+### [Lession 19 - Name Classification Using A Recurrent Neural Network (RNN)](https://www.youtube.com/watch?v=WEV61GmmPrk&list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4&index=19)
 
-### [Lesson 20 - Recurrent Neural Networks With Long Short-Term Memory (LSTM) & GRU]()
+### [Lesson 20 - Recurrent Neural Networks With Long Short-Term Memory (LSTM) & GRU](https://www.youtube.com/watch?v=0_PgWWmauHk&list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4&index=20)
 
-### [Lesson 21 - Lightweight PyTorch Wrapper: PyTorch Lightning]()
+### [Lesson 21 - Lightweight PyTorch Wrapper: PyTorch Lightning](https://www.youtube.com/watch?v=Hgg8Xy6IRig&list=PLqnslRFeH2UrcDBWF5mfPGpqQDSta6VK4&index=21)
+
+Content
+
+* [Lightning](https://lightning.ai/docs/app/stable/) is a "hyper-minimalistic framework, to build machine learning components that can plug into existing ML workflows".
+* The tutorial works with an outdated version of Lightning, formerly known as PyTorch Lightning.
+* The big benefits of Lightning are
+  * Better and clearer code structure
+  * Integration of [Tensorboard](https://www.tensorflow.org/tensorboard)
+  * Provides functionality for scalable & distributed training
+
+Comments
+
+1. According to my knowledge, the examples uses the validation function instead of the test function.
+2. The code doesn't use type hints, although they are recommended by many python experts.
 

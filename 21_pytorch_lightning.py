@@ -83,6 +83,23 @@ class NeuralNet(LightningModule):
         logger.debug('Exit')
         return loss
 
+    def test_step(self, batch, batch_idx) -> Tensor:
+        logger.debug('Enter')
+        images, labels = batch
+        images: Tensor = images.reshape(-1, 28 * 28)
+
+        # Forward pass
+        outputs: Tensor = self(images)
+        loss: Tensor = F.cross_entropy(outputs, labels)
+
+        # dictionary: dict = {'val_loss': loss}
+        # self.log_dict(dictionary, on_step=False, on_epoch=True)
+        # return dict
+
+        self.log("test_loss", loss, on_step=False, on_epoch=True, prog_bar=True)
+        logger.debug('Exit')
+        return loss
+
     def on_train_epoch_end(self) -> None:
         # all_preds = torch.stack(self.training_step_outputs)
         self.training_step_outputs.clear()
@@ -137,7 +154,8 @@ class DataModule(LightningDataModule):
 
 if __name__ == '__main__':
     logging.basicConfig(filename='./log/pytorch_tutorial.log', encoding='utf-8',
-                        format='%(asctime)s,%(msecs)-3d - %(levelname)-8s - %(filename)s:%(lineno)d - %(module)s - %(funcName)s - %(message)s',
+                        format='%(asctime)s,%(msecs)-3d - %(levelname)-8s - %(filename)s:%(lineno)d - '
+                               '%(module)s - %(funcName)s - %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S', level=logging.DEBUG)
     logger = logging.getLogger(__name__)
     logger.debug('Start __main__')
@@ -147,5 +165,5 @@ if __name__ == '__main__':
     data_module: LightningDataModule = DataModule()
     trainer.fit(model, datamodule=data_module)
     trainer.validate(model, datamodule=data_module)
-    trainer.validate(model, datamodule=data_module)
+    trainer.test(model, datamodule=data_module)
     logger.debug('End __main__')

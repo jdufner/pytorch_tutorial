@@ -253,6 +253,6 @@ Content
 
 Comments
 
-1. According to my knowledge, the examples uses the validation function instead of the test function.
+1. According to my knowledge, this example uses the validation function instead of the test function.
 2. The code doesn't use type hints, although they are recommended by many python experts.
-
+3. The test doesn't calculate an accuracy, which is for me the most import value in a classification example.

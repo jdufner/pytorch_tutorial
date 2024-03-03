@@ -13,6 +13,8 @@ from torch.optim import Adam
 from torch.optim import Optimizer
 from torch.utils.data import DataLoader
 from torch.utils.data import random_split
+from torchmetrics import Accuracy
+from torchmetrics import Metric
 from torchvision.datasets import MNIST
 from torchvision.datasets import VisionDataset
 import torchvision.transforms as transforms
@@ -72,14 +74,15 @@ class NeuralNet(LightningModule):
         images: Tensor = images.reshape(-1, 28 * 28)
 
         # Forward pass
-        outputs: Tensor = self(images)
-        loss: Tensor = F.cross_entropy(outputs, labels)
+        predictions: Tensor = self(images)
+        loss: Tensor = F.cross_entropy(predictions, labels)
+        #accuracy: Accuracy = Accuracy(task='multiclass', num_classes=num_classes)
+        #a = accuracy(predictions, labels)
 
-        # dictionary: dict = {'val_loss': loss}
-        # self.log_dict(dictionary, on_step=False, on_epoch=True)
-        # return dict
+        dictionary: dict = {'val_loss': loss}
+        self.log_dict(dictionary, on_step=False, on_epoch=True, prog_bar=True)
 
-        self.log("val_loss", loss, on_step=False, on_epoch=True, prog_bar=True)
+        # self.log("val_loss", loss, on_step=False, on_epoch=True, prog_bar=True)
         logger.debug('Exit')
         return loss
 
@@ -89,14 +92,13 @@ class NeuralNet(LightningModule):
         images: Tensor = images.reshape(-1, 28 * 28)
 
         # Forward pass
-        outputs: Tensor = self(images)
-        loss: Tensor = F.cross_entropy(outputs, labels)
+        predictions: Tensor = self(images)
+        loss: Tensor = F.cross_entropy(predictions, labels)
+        accuracy: Metric = Accuracy(task='multiclass', num_classes=num_classes)
+        accuracy: Accuracy = accuracy(predictions, labels)
 
-        # dictionary: dict = {'val_loss': loss}
-        # self.log_dict(dictionary, on_step=False, on_epoch=True)
-        # return dict
-
-        self.log("test_loss", loss, on_step=False, on_epoch=True, prog_bar=True)
+        dictionary: dict = {'test_loss': loss, 'accuracy': accuracy}
+        self.log_dict(dictionary, on_step=False, on_epoch=True, prog_bar=True)
         logger.debug('Exit')
         return loss
 
@@ -159,8 +161,8 @@ if __name__ == '__main__':
                         datefmt='%Y-%m-%d %H:%M:%S', level=logging.DEBUG)
     logger = logging.getLogger(__name__)
     logger.debug('Start __main__')
-    trainer = Trainer(fast_dev_run=True)
-    # trainer = Trainer(max_epochs=num_epochs, fast_dev_run=False)
+    # trainer = Trainer(fast_dev_run=True)
+    trainer = Trainer(max_epochs=num_epochs, fast_dev_run=False)
     model: LightningModule = NeuralNet(input_size, hidden_size, num_classes)
     data_module: LightningDataModule = DataModule()
     trainer.fit(model, datamodule=data_module)

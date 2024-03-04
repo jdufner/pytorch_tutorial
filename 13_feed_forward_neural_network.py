@@ -6,7 +6,6 @@
 # Model evaluation
 # GPU support
 
-import os
 import torch
 from torch import cuda
 from torch import device
@@ -23,7 +22,6 @@ from torchvision.datasets import MNIST
 from torchvision.datasets import VisionDataset
 import torchvision.transforms as transforms
 from typing import Iterator, Tuple
-import matplotlib as plt
 
 # device config
 device: device = device('cuda' if cuda.is_available() else 'cpu')
@@ -42,31 +40,23 @@ entire_dataset: VisionDataset = MNIST(root='./data', train=True, transform=trans
 train_size: int = int(.8 * len(entire_dataset))
 val_size: int = len(entire_dataset) - train_size
 train_dataset, val_dataset = random_split(entire_dataset, [train_size, val_size])
-train_data_loader: DataLoader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True,
-                                           num_workers=os.cpu_count() // 2, persistent_workers=True)
-val_data_loader: DataLoader = DataLoader(dataset=val_dataset, batch_size=batch_size, shuffle=False,
-                                         num_workers=os.cpu_count() // 2, persistent_workers=True)
+train_data_loader: DataLoader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True)
+val_data_loader: DataLoader = DataLoader(dataset=val_dataset, batch_size=batch_size, shuffle=False)
 
 # Test data
 test_dataset: torchvision.datasets = MNIST(root='./data', train=False, transform=transforms.ToTensor(), download=True)
-test_data_loader: DataLoader = DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=False,
-                                          num_workers=os.cpu_count() // 2, persistent_workers=True)
+test_data_loader: DataLoader = DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=False)
 
 # without type hints
-examples = iter(train_data_loader)
-samples, labels = next(examples)
+# examples = iter(train_data_loader)
+# samples, labels = next(examples)
 # print(samples.shape, labels.shape)
 
 # with type hints
-# examples: Iterator[Tuple[Tensor, Tensor]] = iter(train_data_loader)
-# example: Tuple[Tensor, Tensor] = next(examples)
-# samples: Tensor = example[0]
-# labels: Tensor = example[1]
-
-# for i in range(6):  # type: int
-#     plt.subplot(2, 3, i + 1)
-#     plt.imshow(samples[i][0], cmap='gray')
-# plt.show()
+examples: Iterator[Tuple[Tensor, Tensor]] = iter(train_data_loader)
+example: Tuple[Tensor, Tensor] = next(examples)
+samples: Tensor = example[0]
+labels: Tensor = example[1]
 
 
 class NeuralNet(Module):

@@ -17,10 +17,9 @@ from torch.nn import ReLU
 from torch.optim import Adam
 from torch.utils.data import DataLoader
 from torch.utils.data import random_split
-import torchvision
 from torchvision.datasets import MNIST
 from torchvision.datasets import VisionDataset
-import torchvision.transforms as transforms
+from torchvision.transforms import ToTensor
 from typing import Iterator, Tuple
 
 # device config
@@ -32,19 +31,19 @@ hidden_size: int = 100
 num_classes: int = 10
 num_epochs: int = 2
 batch_size: int = 100
-learning_rate: float = .001
+learning_rate: float = 0.001
 
 # MNIST
 # Training + validation data
-entire_dataset: VisionDataset = MNIST(root='./data', train=True, transform=transforms.ToTensor(), download=True)
-train_size: int = int(.8 * len(entire_dataset))
+entire_dataset: VisionDataset = MNIST(root='./data', train=True, transform=ToTensor(), download=True)
+train_size: int = int(0.8 * len(entire_dataset))
 val_size: int = len(entire_dataset) - train_size
 train_dataset, val_dataset = random_split(entire_dataset, [train_size, val_size])
 train_data_loader: DataLoader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True)
 val_data_loader: DataLoader = DataLoader(dataset=val_dataset, batch_size=batch_size, shuffle=False)
 
 # Test data
-test_dataset: torchvision.datasets = MNIST(root='./data', train=False, transform=transforms.ToTensor(), download=True)
+test_dataset: VisionDataset = MNIST(root='./data', train=False, transform=ToTensor(), download=True)
 test_data_loader: DataLoader = DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=False)
 
 # without type hints
@@ -61,16 +60,16 @@ labels: Tensor = example[1]
 
 class NeuralNet(Module):
 
-    def __init__(self, input_size, hidden_size, num_classes):
+    def __init__(self, input_size, hidden_size, num_classes) -> None:
         super(NeuralNet, self).__init__()
         self.l1: Linear = Linear(input_size, hidden_size)
         self.relu: ReLU = ReLU()
         self.l2: Linear = Linear(hidden_size, num_classes)
 
-    def forward(self, x: torch.Tensor) -> Linear:
-        out: Linear = self.l1(x)
-        out: ReLU = self.relu(out)
-        out: Linear = self.l2(out)
+    def forward(self, x: Tensor) -> Module:
+        out: Module = self.l1(x)
+        out: Module = self.relu(out)
+        out: Module = self.l2(out)
         return out
 
 
@@ -90,8 +89,8 @@ for epoch in range(num_epochs):  # type: int
         labels: Tensor = labels.to(device)
 
         # forward
-        outputs: Tensor = model(images)
-        loss: Tensor = criterion(outputs, labels)
+        prediction: Tensor = model(images)
+        loss: Tensor = criterion(prediction, labels)
 
         # backward
         optimizer.zero_grad()
@@ -107,15 +106,14 @@ for epoch in range(num_epochs):  # type: int
 with torch.no_grad():
     n_correct: int = 0
     n_samples: int = 0
-    for images, labels in test_data_loader:
+    for images, labels in test_data_loader:  # type: [Tensor, Tensor]
         images: Tensor = images.reshape(-1, 28 * 28).to(device)
         labels: Tensor = labels.to(device)
-        outputs: Tensor = model(images)
+        prediction: Tensor = model(images)
 
-        # value, index
-        _, predictions = torch.max(outputs, 1)
+        max_value, max_index = torch.max(prediction, 1)  # type: Tuple[Tensor, Tensor]
         n_samples += labels.shape[0]  # type: int
-        n_correct += (predictions == labels).sum().item()  # type: int
+        n_correct += (max_index == labels).sum().item()  # type: int
 
 acc: float = 100. * n_correct / n_samples
 print(f'accuracy = {acc}')

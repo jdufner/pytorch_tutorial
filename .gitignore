@@ -22,4 +22,4 @@ data/hymenoptera_data
 # Statistics for Tensorboard
 runs/
 lightning_logs/
-log/
+logs/

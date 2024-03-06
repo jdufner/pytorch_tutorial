@@ -155,7 +155,7 @@ class DataModule(LightningDataModule):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(filename='./log/pytorch_tutorial.log', encoding='utf-8',
+    logging.basicConfig(filename='./logs/pytorch_tutorial.log', encoding='utf-8',
                         format='%(asctime)s,%(msecs)-3d - %(levelname)-8s - %(filename)s:%(lineno)d - '
                                '%(module)s - %(funcName)s - %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S', level=logging.DEBUG)
